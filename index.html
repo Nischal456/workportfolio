@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Simran's Portfolio </title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo"> Simran's Portfolio </div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Works</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Simran's Portfolio</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/profile-pic .png" alt="John Doe profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Simran Khadka</h1>
+        <p class="section__text__p2">Actress / Model</p>
+        <div class="btn-container">
+          <button class="btn btn-color-1" onclick="toggleContact()">Contact Info</button>
+
+          <div id="contactDetails" class="contact-info">
+              <p>📞 Phone: +977 9860534943</p>
+              <p>📧 Email: simrankhadka345@gmail.com</p>
+          </div>
+      
+          <script>
+              function toggleContact() {
+                  var contactDiv = document.getElementById("contactDetails");
+      
+                  if (contactDiv.style.display === "none" || contactDiv.style.display === "") {
+                      contactDiv.style.display = "block";
+                      setTimeout(() => {
+                          contactDiv.style.opacity = "1";
+                      }, 10);
+                  } else {
+                      contactDiv.style.opacity = "0";
+                      setTimeout(() => {
+                          contactDiv.style.display = "none";
+                      }, 500);
+                  }
+              }
+      
+              // Ensure contact info is hidden on page reload
+              window.onload = function() {
+                  var contactDiv = document.getElementById("contactDetails");
+                  contactDiv.style.display = "none";
+                  contactDiv.style.opacity = "0";
+              };
+          </script>      
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/Facebook.png"
+            alt="My Facebook profile"
+            class="icon"
+            onclick="location.href='https://www.facebook.com/simran.khadka.564'"
+          />
+          <img
+            src="./assets/Instagram.png"
+            alt="My Instagram profile"
+            class="icon"
+            onclick="location.href='https://www.instagram.com/simrankhadka_3/'"
+          />
+    
+          <img
+            src="./assets/Tiktok.png"
+            alt="My Tiktok profile"
+            class="icon"
+            onclick="location.href='https://www.tiktok.com/@simrankhadka_3'"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about.JPG"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p> Flim Industry 🎬 <br /> 5 years </p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>Bachelor Degree 📜<br />4th Year</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              I’m <b>Simran Khadka</b> , a passionate actor dedicated to storytelling. I completed a one-year acting diploma at Kantipur Film Academy, which honed my craft.
+
+            <br>
+            <b>I’ve acted in films like Premganj , Agastya , Chitra , and Behuli from Meghauli 🎬 .</b> 
+            </p>
+          </div>
+          <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='#experience'"
+      />
+        </div>
+      </div>
+    </section>
+    
+  
+    <section id="experience">
+      <p class="section__text__p1">Explore My Works</p>
+      <h1 class="title">Works</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <div class="details-container color-container">
+                <div class="Worksimage-container">
+                  <img src="./assets/works/1.JPG" alt="Image 1">
+                </div>
+                <h2 class="experience-sub-title project-title"> Chitra Movie </h2>
+                <div class="btn-container">
+                </div>
+              </div>
+                
+              <div class="details-container color-container">
+                <div class="Worksimage-container">
+                  <img src="./assets/works/2.JPG" alt="Image 1">
+                </div>
+                <h2 class="experience-sub-title project-title"> Behuli From Meghauli Movie </h2>
+                <div class="btn-container">
+                </div>
+              </div>
+              
+              <div class="details-container color-container">
+                <div class="Worksimage-container">
+                  <img src="./assets/works/4.JPG" alt="Image 1">
+                </div>
+                <h2 class="experience-sub-title project-title"> Short Movie </h2>
+                <div class="btn-container">
+                </div>
+              </div>
+              </div>
+              <div class="experience-details-container">
+                <div class="about-containers">
+              <div class="details-container color-container">
+                <div class="Worksimage-container">
+                  <img src="./assets/works/5.JPG" alt="Image 1">
+                </div>
+                <h2 class="experience-sub-title project-title"> Chitra Movie </h2>
+                <div class="btn-container">
+                  <button
+                    class="btn btn-color-2 project-btn"
+                    onclick="location.href='https://www.youtube.com/watch?v=jdtAil6JFyA'"
+                  >
+                  Trailer
+                  </button>
+                    
+                </div>
+              </div>
+              <div class="details-container color-container">
+                <div class="Worksimage-container">
+                  <img src="./assets/works/7.JPG" alt="Image 1">
+                </div>
+                <h2 class="experience-sub-title project-title"> Preamgunj Movie </h2>
+                <div class="btn-container">
+                  <button
+                    class="btn btn-color-2 project-btn"
+                    onclick="location.href='https://www.youtube.com/watch?v=cesv31oGxlE'"
+                  >
+                  Trailer
+                  </button>
+                    
+                </div>
+              </div>
+
+              <div class="details-container color-container">
+                <div class="Worksimage-container">
+                  <img src="./assets/works/6.JPG" alt="Image 1">
+                </div>
+                <h2 class="experience-sub-title project-title"> Chitra Movie </h2>
+                <div class="btn-container">
+                  <button
+                    class="btn btn-color-2 project-btn"
+                    onclick="location.href='https://www.youtube.com/watch?v=jdtAil6JFyA'"
+                  >
+                  Trailer
+                  </button>
+                    
+                </div>
+              </div>
+
+              
+
+
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='#contact'"
+      />
+    </section>
+      
+
+
+
+
+    <section id="projects">
+      <p class="section__text__p1"> The Projects I Have Done </p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <div class="details-container color-container">
+                <div class="article-container">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/OwLvKrenonw?si=kCy6ebZdB_AWPxKn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <h2 class="experience-sub-title project-title"> Udaayo Maan Song </h2>
+                <div class="btn-container">
+                  <button
+                    class="btn btn-color-2 project-btn"
+                    onclick="location.href='https://www.youtube.com/watch?v=OwLvKrenonw'"
+                  >
+                  Watch On Youtube
+                  </button>
+                    
+                </div>
+              </div>
+                
+              <div class="details-container color-container">
+                <div class="article-container">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/-h_b60pwLrI?si=t9p8qPfleDUgG9BP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <h2 class="experience-sub-title project-title"> Manipuation A Short Movie</h2>
+                <div class="btn-container">
+                  <button
+                    class="btn btn-color-2 project-btn"
+                    onclick="location.href='https://youtu.be/iONXVu1FStg?si=oNWo8Z3Ph1XyzjAq'"
+                  >
+                  Watch On Youtube
+                  </button>
+                    
+                </div>
+              </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/iONXVu1FStg?si=Va9QoDaonkoJ7hqZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <h2 class="experience-sub-title project-title"> Gori Song </h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://youtu.be/iONXVu1FStg?si=oNWo8Z3Ph1XyzjAq'"
+              >
+              Watch On Youtube
+              </button>
+            </div>
+          </div>
+         
+          <div class="details-container color-container">
+            <div class="article-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/4lQMGwVZ8m0?si=dMDIPW4PZLM1KAV3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <h2 class="experience-sub-title project-title"> JINDAGI A Short Movie</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://youtu.be/iONXVu1FStg?si=oNWo8Z3Ph1XyzjAq'"
+              >
+              Watch On Youtube
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='#contact'"
+      />
+    </section>
+
+
+    <section id="gallery">
+      <p class="section__text__p1">Photo Gallery</p>
+      <h1 class="title">My Photos</h1>
+      <br>
+      <center>
+        <div class="gallery-container">
+          
+          <div class="gallery">
+              <img src="./assets/Photo gallery/1.JPG" alt="Image 1">
+              <img src="./assets/Photo gallery/2.JPG" alt="Image 2">
+              <img src="./assets/Photo gallery/3.JPG" alt="Image 3">
+              <img src="./assets/Photo gallery/4.JPG" alt="Image 4">
+              <img src="./assets/Photo gallery/5.JPG" alt="Image 5">
+              <img src="./assets/Photo gallery/6.JPG" alt="Image 6">
+              <img src="./assets/Photo gallery/7.JPG" alt="Image 7">
+              <img src="./assets/Photo gallery/8.JPG" alt="Image 8">
+              <img src="./assets/Photo gallery/9.JPG" alt="Image 9">
+              <img src="./assets/Photo gallery/10.JPG" alt="Image 10">
+              <img src="./assets/Photo gallery/11.JPG" alt="Image 11">
+              <img src="./assets/Photo gallery/12.JPG" alt="Image 12">
+              <img src="./assets/Photo gallery/13.JPG" alt="Image 13">
+          </div>
+          
+      </div>
+    </center>
+  </section>
+    
+  <script>
+    let index = 0;
+    const images = document.querySelectorAll(".gallery img");
+    const gallery = document.querySelector(".gallery");
+    const totalImages = images.length;
+  
+    function showSlide() {
+        gallery.style.transform = `translateX(${-index * 100}%)`;
+    }
+  
+    function nextSlide() {
+        index = (index + 1) % totalImages;
+        showSlide();
+    }
+  
+    function prevSlide() {
+        index = (index - 1 + totalImages) % totalImages;
+        showSlide();
+    }
+  
+    // Ensure arrows stay at correct positions
+    window.addEventListener('load', function() {
+        document.querySelector('.left-arrow').style.left = '10px';
+        document.querySelector('.right-arrow').style.right = '10px';
+    });
+  
+    // Auto slideshow every 3 seconds
+    setInterval(nextSlide, 4000);
+  </script>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:simrankhadka345@gmail.com">simrankhadka345@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/Instagram.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.instagram.com/simrankhadka_3/">Message me</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Works</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2025 Simran Khadka. <br>
+        All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
