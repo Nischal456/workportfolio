@@ -356,24 +356,38 @@ article .icon {
 
 @media (max-width: 768px) {
   .details-container {
-    padding: 10px;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+    width: 100%; /* Ensure full width */
   }
 
   .article-container iframe {
-    width: 100%;
+    width: 100%; /* Make video responsive */
     height: auto;
   }
 
   .btn-container {
+    width: 100%;
     text-align: center;
   }
 
   .btn {
     width: 100%;
-    padding: 10px;
+  }
+
+  /* Fix grid layout */
+  .grid-container {
+    display: flex;
+    flex-direction: column; /* Stack videos on top of each other */
+    gap: 10px; /* Add spacing between items */
+  }
+
+  .grid-item {
+    width: 100%; /* Ensure full width */
   }
 }
+
 
 /* PROJECTS SECTION */
 
