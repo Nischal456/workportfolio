@@ -354,6 +354,27 @@ article .icon {
   cursor: default;
 }
 
+@media (max-width: 768px) {
+  .details-container {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .article-container iframe {
+    width: 100%;
+    height: auto;
+  }
+
+  .btn-container {
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
 /* PROJECTS SECTION */
 
 #projects {
