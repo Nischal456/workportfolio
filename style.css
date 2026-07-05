@@ -13,6 +13,7 @@ body{
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 p {
@@ -28,131 +29,230 @@ a,
 
 /* DESKTOP NAV */
 
-nav,
-.nav-links {
+/* DESKTOP NAV */
+
+#desktop-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 0 5%; /* Set a solid default side padding */
   display: flex;
-}
-
-nav {
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  height: 17vh;
 }
 
-.nav-links {
-  gap: 2rem;
-  list-style: none;
-  font-size: 1.5rem;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-  text-decoration-color: white;
-}
-
-a:hover {
-  color: grey;
-  text-decoration: underline;
-  text-underline-offset: 1rem;
-  text-decoration-color: rgb(181, 181, 181);
+#desktop-nav.nav-scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  height: 70px;
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #111111;
+  transition: color 0.3s ease;
 }
 
 .logo:hover {
-  cursor: default;
+  color: var(--gauthali-gold, #b8860b);
+  cursor: pointer;
+}
+
+.nav-links {
+  gap: 2.5rem;
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+}
+
+.nav-links a {
+  color: #333333;
+  text-decoration: none;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--gauthali-gold, #b8860b);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gauthali-gold, #b8860b);
+  text-decoration: none;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 /* HAMBURGER MENU */
 
 #hamburger-nav {
   display: none;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 1.25rem; /* Reduced padding to fit smaller screens */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure logo shrinks gracefully if screen is extremely narrow */
+.logo {
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hamburger-menu {
   position: relative;
   display: inline-block;
+  flex-shrink: 0; /* Never let the hamburger menu icon shrink */
 }
 
 .hamburger-icon {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 24px;
-  width: 30px;
+  height: 18px;
+  width: 24px;
   cursor: pointer;
+  z-index: 1000;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .hamburger-icon span {
+  display: block; /* Ensure display is block-level */
   width: 100%;
   height: 2px;
-  background-color: black;
-  transition: all 0.3 ease-in-out;
-  transform: scale(1.2);
+  background-color: #111111;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: left center;
 }
 
 .menu-links {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  width: fit-content;
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.3 ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 998;
 }
 
-.menu-links a {
-  display: block;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.5rem;
-  color: black;
-  text-decoration: none;
-  transition: all 0.3 ease-in-out;
+.menu-links.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .menu-links li {
   list-style: none;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 }
 
-.menu-links.open {
-  max-height: 300px;
+.menu-links.open li {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu-links.open li:nth-child(1) { transition-delay: 0.08s; }
+.menu-links.open li:nth-child(2) { transition-delay: 0.14s; }
+.menu-links.open li:nth-child(3) { transition-delay: 0.2s; }
+.menu-links.open li:nth-child(4) { transition-delay: 0.26s; }
+.menu-links.open li:nth-child(5) { transition-delay: 0.32s; }
+
+.menu-links a {
+  display: block;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #111111;
+  text-decoration: none;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+.menu-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--gauthali-gold, #b8860b);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.menu-links a:hover {
+  color: var(--gauthali-gold, #b8860b);
+}
+
+.menu-links a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(10px, 5px);
+  transform: rotate(45deg) translate(2px, -3px);
 }
 
 .hamburger-icon.open span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(10px, -5px);
-}
-
-.hamburger-icon span:first-child {
-  transform: none;
-}
-
-.hamburger-icon span:first-child {
-  opacity: 1;
-}
-
-.hamburger-icon span:first-child {
-  transform: none;
+  transform: rotate(-45deg) translate(2px, 3px);
 }
 
 /* SECTIONS */
 
 section {
-  padding-top: 4vh;
+  padding-top: 110px; /* Clearance for sticky header */
   height: 96vh;
-  margin: 0 10rem;
+  max-width: 1200px; /* Limit content width on wider screens */
+  margin: 0 auto; /* Center sections in the middle of the screen */
   box-sizing: border-box;
   min-height: fit-content;
 }
@@ -840,3 +940,517 @@ img {
   height: auto;
   object-fit: contain; /* Ensures full image is visible without cropping */
 }
+
+/* ==========================================================================
+   GAUTHALI MOVIE RELEASE POPUP STYLES (LIGHT UI)
+   ========================================================================== */
+
+:root {
+  --gauthali-gold: #b8860b; /* Rich dark gold for high-contrast readability */
+  --gauthali-gold-hover: #996515;
+  --gauthali-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 248, 248, 0.97) 100%);
+  --gauthali-border: 1px solid rgba(184, 134, 11, 0.35);
+  --gauthali-text-primary: #1a1a1a;
+  --gauthali-text-muted: #555555;
+  --gauthali-shadow: rgba(0, 0, 0, 0.12);
+}
+
+/* Base Dialog styling override */
+#gauthali-popup {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0;
+  max-width: 860px;
+  width: 90%;
+  margin: auto;
+  overflow: visible;
+}
+
+/* Backdrop Styling with Glassmorphism */
+#gauthali-popup::backdrop {
+  background: rgba(0, 0, 0, 0.5); /* Lighter backdrop for Light UI */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Backdrop Open State */
+#gauthali-popup[open]::backdrop {
+  opacity: 1;
+}
+
+/* Popup Opening Entrance Animation */
+#gauthali-popup[open] {
+  animation: gauthaliScaleUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Popup Closing Exit Animation */
+#gauthali-popup.gauthali-closing {
+  animation: gauthaliScaleDown 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes gauthaliScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes gauthaliScaleDown {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+}
+
+/* Modal Box Content */
+.gauthali-modal-content {
+  position: relative;
+  background: var(--gauthali-bg);
+  border: var(--gauthali-border);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 30px rgba(184, 134, 11, 0.1);
+  overflow: hidden;
+  padding: 35px;
+  color: var(--gauthali-text-primary);
+  font-family: "Poppins", sans-serif;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Glowing Border Animation */
+.gauthali-modal-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    rgba(184, 134, 11, 0.08) 20%,
+    rgba(184, 134, 11, 0.2) 40%,
+    transparent 60%
+  );
+  animation: gauthaliBorderRotate 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes gauthaliBorderRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Overlay content container */
+.gauthali-modal-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+/* Close Modal Button */
+.gauthali-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.gauthali-modal-close:hover {
+  color: var(--gauthali-gold);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Left Column: Poster Section */
+.gauthali-poster-section {
+  flex: 0 0 280px;
+  max-width: 280px;
+}
+
+.gauthali-poster-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+  aspect-ratio: 1 / 1.414;
+  background: #f0f0f0;
+}
+
+.gauthali-poster-wrapper:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(184, 134, 11, 0.2);
+}
+
+.gauthali-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Interactive play overlay on poster hover */
+.gauthali-poster-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.gauthali-poster-wrapper:hover .gauthali-poster-overlay {
+  opacity: 1;
+}
+
+/* Pulsing Play Button */
+.gauthali-play-btn {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #d4af37; /* Bright gold for play button */
+  border: none;
+  color: #0c0c0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  animation: gauthaliPulsePlay 2s infinite;
+}
+
+.gauthali-play-btn svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+}
+
+.gauthali-play-btn:hover {
+  background: #f3e5ab;
+  transform: scale(1.15);
+}
+
+.gauthali-play-text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes gauthaliPulsePlay {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+/* Right Column: Info Section */
+.gauthali-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.gauthali-badge {
+  align-self: flex-start;
+  background: linear-gradient(90deg, #996515, var(--gauthali-gold));
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
+}
+
+.gauthali-movie-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #111111 40%, var(--gauthali-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gauthali-release-date {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  color: #333333;
+}
+
+.gauthali-highlight {
+  color: var(--gauthali-gold);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(184, 134, 11, 0.2);
+}
+
+/* Movie Meta Details List */
+.gauthali-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 12px 0;
+  margin-bottom: 16px;
+  font-size: 13.5px;
+  color: var(--gauthali-text-muted);
+}
+
+.gauthali-meta p {
+  color: var(--gauthali-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.gauthali-meta strong {
+  color: #111111;
+}
+
+.gauthali-description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  color: #444444;
+}
+
+/* Video / Trailer Area */
+.gauthali-video-preview {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(184, 134, 11, 0.25);
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gauthali-video-preview:hover {
+  transform: translateY(-2px);
+  border-color: var(--gauthali-gold);
+  box-shadow: 0 10px 25px rgba(184, 134, 11, 0.25);
+}
+
+.gauthali-preview-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gauthali-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  filter: brightness(0.8) blur(0.5px);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.gauthali-video-preview:hover .gauthali-thumbnail-img {
+  transform: scale(1.04);
+  filter: brightness(0.9);
+}
+
+.gauthali-thumbnail-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.gauthali-video-preview:hover .gauthali-thumbnail-overlay {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.gauthali-thumbnail-play {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(15, 15, 15, 0.8);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, border-color 0.3s;
+}
+
+.gauthali-thumbnail-play-icon {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+  margin-left: 2px;
+  transition: fill 0.3s;
+}
+
+.gauthali-video-preview:hover .gauthali-thumbnail-play {
+  transform: scale(1.12);
+  background: #d4af37;
+  border-color: #d4af37;
+}
+
+.gauthali-video-preview:hover .gauthali-thumbnail-play-icon {
+  fill: #0c0c0c;
+}
+
+.gauthali-thumbnail-overlay span {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Lazy-loaded iframe */
+.gauthali-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+/* ==========================================================================
+   GAUTHALI MODAL RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .gauthali-modal-content {
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  .gauthali-modal-body {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .gauthali-poster-section {
+    flex: 0 0 auto;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .gauthali-poster-wrapper {
+    aspect-ratio: 1 / 1.414;
+  }
+
+  .gauthali-info-section {
+    text-align: center;
+    width: 100%;
+  }
+
+  .gauthali-badge {
+    align-self: center;
+  }
+
+  .gauthali-movie-title {
+    font-size: 1.8rem;
+  }
+
+  .gauthali-meta {
+    justify-content: center;
+    gap: 8px 15px;
+  }
+  
+  .gauthali-modal-close {
+    top: 8px;
+    right: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .gauthali-modal-content {
+    padding: 20px 15px 15px 15px;
+    border-radius: 16px;
+  }
+
+  .gauthali-poster-section {
+    display: none; /* Hide poster image on tiny phones to focus attention strictly on trailer */
+  }
+
+  .gauthali-movie-title {
+    font-size: 1.5rem;
+    margin-top: 15px;
+  }
+
+  .gauthali-release-date {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .gauthali-meta {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 10px 0;
+    margin-bottom: 12px;
+  }
+
+  .gauthali-description {
+    font-size: 13px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  .gauthali-video-preview {
+    border-radius: 10px;
+  }
+}
+
+/* Align sticky desktop nav content to the centered content area on wide screens */
+@media screen and (min-width: 1400px) {
+  #desktop-nav {
+    padding: 0 calc((100% - 1200px) / 2);
+  }
+}
+
